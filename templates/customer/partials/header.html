@@ -40,10 +40,18 @@
                             <div class="logo">
                                 <!-- Brand -->
                                 <a class="navbar-brand page-scroll white-logo" href="{% url 'home' %}">
-                                    <img src="{% static 'customer/img/logo/logo100.png' %}" alt="">
+                                    {% for logo in logos %}
+                                        {% if not logo.is_black %}
+                                        <img src="{{logo.image.url}}" alt="">
+                                        {% endif %}
+                                    {% endfor %}
                                 </a>
                                 <a class="navbar-brand page-scroll black-logo" href="{% url 'home' %}">
-                                    <img src="{% static 'customer/img/logo/logo-black.png' %}" alt="">
+                                    {% for logo in logos %}
+                                        {% if logo.is_black %}
+                                        <img src="{{logo.image.url}}" alt="">
+                                        {% endif %}
+                                    {% endfor %}
                                 </a>
                             </div>
                             <!-- logo end -->
@@ -82,7 +90,13 @@
                 <div class="col-md-12">
                     <div class="mobile-menu">
                         <div class="logo">
-                            <a href="{% url 'home' %}"><img src="{% static 'customer/img/logo/logo-black.png' %}" alt="" /></a>
+                            <a href="{% url 'home' %}">
+                                {% for logo in logos %}
+                                    {% if logo.is_black %}
+                                        <img src="{{logo.image.url}}" alt="">
+                                    {% endif %}
+                                {% endfor %}
+                            </a>
                         </div>
                         <nav id="dropdown">
                             <ul>

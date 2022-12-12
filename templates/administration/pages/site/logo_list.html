@@ -1,0 +1,32 @@
+{% extends 'administration/main.html' %}
+{% load static %}
+{% block content %}
+<div class="container-fluid">
+    <div class="row justify-content-center">
+      <div class="col-12 col-lg-10">
+        <div class="row align-items-center my-4">
+          <div class="col">
+            <h2 class="page-title">Logo</h2>
+          </div>
+          <div class="col-auto">
+            <button type="button" class="btn btn-md btn-danger"><span class="fe fe-plus fe-16 mr-3"></span>Ajouter</button>
+          </div>
+        </div>
+        <div class="card-deck mb-4">
+          {% for logo in logos %}
+          <div class="card border-0 bg-transparent">
+            <img src="{{logo.image.url}}" alt="..." class="card-img-top img-fluid rounded">
+            <div class="card-body">
+              <h5 class="h6 card-title mb-1">{{logo.name}}</h5>
+              <p class="card-text">
+                <span class="badge badge-light text-muted mr-2">1.2M</span>
+                <span class="badge badge-pill badge-light text-muted">SVG</span>
+              </p>
+            </div>
+          </div> <!-- .card -->
+          {% endfor %}
+        </div> <!-- .card-deck -->
+      </div>
+    </div> <!-- .row -->
+  </div>
+{% endblock content %}

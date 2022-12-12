@@ -6,10 +6,11 @@ from accounts.models import User
 
 class Logo(models.Model):
 
-    image = models.ImageField(_('Image'), upload_to="logo/")
+    image = models.FileField(_('Image'), upload_to="logo/")
     name = models.CharField(_('Nom'), max_length=255)
     description = models.TextField(_('Description'), null= True, blank=True)
     is_active = models.BooleanField(_('Active'), default=False)
+    is_black = models.BooleanField(_('Black'), default=False)
 
     class Meta:
         verbose_name = _("Logo")
