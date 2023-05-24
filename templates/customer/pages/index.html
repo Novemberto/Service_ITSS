@@ -16,12 +16,12 @@
                                 <div class="row">
                                     <div class="col-md-12 col-sm-12 col-xs-12">
                                         <!-- Start Slider content -->
-                                        <div class="slide-content text-center">
-                                            <h2 class="title2">{{carousel.description}}</h2>
-                                            <div class="layer-1-3">
-                                                <a href="#" class="ready-btn left-btn" >Découvrir</a>
+                                            <div class="slide-content text-center">
+                                                <h2 class="title2">{{carousel.description}}</h2>
+                                                <div class="layer-1-3">
+                                                    <a href="{% url 'about' %}" class="ready-btn left-btn" >Découvrir</a>
+                                                </div>
                                             </div>
-                                        </div>
                                         <!-- End Slider content -->
                                     </div>
                                 </div>
@@ -30,6 +30,7 @@
                     </div>
                 </div>
             </div>
+
         {% endfor %}
      </div>
 </div>
@@ -79,7 +80,7 @@
                                 <li class="check">{{formation.mode}}</li>
                             </ol>
                             <div class="price-btn blue">
-                                <a class="blue" href="#">Consulter</a>
+                                <a class="blue" href="{% url 'consulter' %}">Consulter</a>
                             </div>
                         </div>
                     </div>
@@ -137,7 +138,9 @@
     </div>
 </div>
 End Self-area -->
-<div class="testimonials">
+
+<!-- Start testimonials area-->
+<div class="reviews-area fix">
     <div class="container">
       <div class="row">
         <div class="col-md-12">
@@ -145,23 +148,44 @@ End Self-area -->
                 <h3>Ce que nos clients disent de nous</h3>
             </div>
         </div>
-        <div class="col-md-12">
-          <div class="owl-testimonials owl-carousel">
-            {% for comment in comments%}
-            <div class="testimonial-item">
-              <div class="inner-content">
-                <h4>{{comment.user.last_name}} {{comment.user.first_name}}</h4>
-                <span>Dev Web</span>
-                <p>{{comment.text}}</p>
-              </div>
-              <img src="{% static 'customer/img/review/1.jpg' %}" alt="oo">
+        <div class="reviews-top">
+                <div class="col-md-5 col-sm-5 col-xs-12">
+                    <div class="testimonial-inner">
+                        <div class="review-head">
+                            
+                            <p>Nos visteurs et nos clients donnent souvent leurs avis sur notre entreprise et surtout sur la qualité de nos services. Prenez quelques instants pour voir ce qu'il pense de nous</p>
+                            <a class="reviews-btn" href="{% url 'voirplus' %}">Voir plus</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-7 col-sm-7 col-xs-12">
+                    <div class="reviews-content">
+                        <!-- start testimonial carousel -->
+                        <div class="testimonial-carousel item-indicator">
+                            {% for comment in comments %}
+                            <div class="single-testi">
+                                <div class="testi-text">
+                                    <div class="clients-text">
+                                        <p>{{comment.text}}</p>
+                                    </div>
+                                    <div class="testi-img ">
+                                        <img src="{{comment.picture.url}}" alt="">
+                                        <div class="guest-details">
+                                            <h4>{{comment.author_full_name}}</h4>
+                                            <span class="guest-rev">{{comment.user.groups}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
             </div>
-            {% endfor %}
-          </div>
-        </div>
       </div>
     </div>
 </div>
+<!-- End testimonials area-->
 <!-- Start partners area-->
 <div class="partners">
     <div class="container">
@@ -170,9 +194,9 @@ End Self-area -->
             <p>Ne perdez pas le temps, rejoignez la grande famille.</p>
         </div>
       <div class="row">
-        <div class="col-md-12">
-          <div class="owl-partners owl-carousel">
-          {% for partner in partners %}
+        <div class="col-md-6">
+          <div class="owl-partners owl-carousel" style="left: 40%; padding-top: 20px; text-align: center;">
+            {% for partner in partners %}
             <div class="partner-item">
               <img src="{{partner.logo.url}}" title="1" alt="{{partner.name}}">
             </div>
